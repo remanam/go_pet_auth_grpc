@@ -26,7 +26,7 @@ type UserStorage interface {
 
 // интерфейс для получения App из хранилища:
 type AppProvider interface {
-	GetAppInfo(ctx context.Context, appID int) (models.App, error)
+	GetAppById(ctx context.Context, appID int) (models.App, error)
 }
 
 type Auth struct {
@@ -129,7 +129,7 @@ func (a *Auth) Login(
 	}
 
 	// Получаем информацию о приложении
-	app, err := a.appProvider.GetAppInfo(ctx, appID)
+	app, err := a.appProvider.GetAppById(ctx, appID)
 	if err != nil {
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
